@@ -1,0 +1,42 @@
+{
+    "source_datasets": 
+      {
+        "hive": {
+          "properties": {
+            "max_recent_hive_partitions": 5,
+            "metadata_store": "global"
+          },
+          "dataset_list": [
+            "database.tablename1",
+            "database.tablename2"
+          ]
+        }
+      }
+    ,
+    "target_datasets": 
+      {
+        "hive": {
+          "properties": {
+            "overwrite": true,
+            "target_data_precopy": true,
+            "metadata_store": "local",
+            "persist_metadata": true,
+            "persist_metadata_gcs_path": "<folder path on test bucket>",
+            "persist_datafiles": true,
+            "persist_table": false
+          },
+          "dataset_list": [
+            "tgtdatabase.tablename1",
+            "tgtdatabase.tablename2"
+          ]
+        }
+      }
+    ,
+    "data_validation": {
+      "source_target_schema_table": [
+        "prod.target==test.target",
+        "prod.target==test.target"
+      ],
+      "validation_type": "<schema/row/column>"
+    }
+  }
